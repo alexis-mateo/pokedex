@@ -8,6 +8,7 @@ import {
 import { App } from './App';
 import { SWRConfig } from 'swr';
 import { fetcher } from './utils/fetcher';
+import './css/main.css'
 
 const router = createBrowserRouter([
   {

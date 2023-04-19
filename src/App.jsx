@@ -4,10 +4,10 @@ import styled from 'styled-components'
 
 const Layout = styled.div`
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: max-content max-content;
   gap: 16px;
-  width: 600px;
   margin: auto;
+  justify-content: center;
 `
 
 export const App = () => {
