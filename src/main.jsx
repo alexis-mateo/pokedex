@@ -9,12 +9,17 @@ import { App } from './App';
 import { SWRConfig } from 'swr';
 import { fetcher } from './utils/fetcher';
 import './css/main.css'
+import { Details } from './Details';
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element:<App />,
+    element: <App />,
   },
+  {
+    path: "/details/:id",
+    element: <Details />
+  }
 ]);
 
 ReactDOM.createRoot(document.getElementById('root')).render(

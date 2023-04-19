@@ -1,10 +1,11 @@
 import styled from 'styled-components'
 import useSWR from 'swr'
+import { useNavigate } from 'react-router-dom'
+
 import pokeballImg from './assets/pokeball.png'
 import { CardSkeleton } from './components/CardSkeleton'
 import { Type } from './components/Type'
-
-import { pokemonTypes } from './utils/pokemonTypes'
+import { usePokemonTypes } from './utils/usePokemonTypes'
 
 const Layout = styled.div`
   display: grid;
@@ -84,11 +85,13 @@ const Layout = styled.div`
 `
 
 export const Card = ({ url, name }) => {
+  const navigate = useNavigate();
   const { data } = useSWR(url)
-  const mainColor = pokemonTypes.filter(type => type?.name === data?.types[0]?.type?.name)[0]?.color
+  const mainColor = usePokemonTypes(data)
+
   return (<>
     {data != null ?
-      <Layout bgColor={mainColor}>
+      <Layout bgColor={mainColor} onClick={() => navigate(`/details/${data?.id}`)}>
         <span className="id">#{data?.id}</span>
         <div className="content">
           <div className="detail">
