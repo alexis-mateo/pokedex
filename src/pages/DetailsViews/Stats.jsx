@@ -18,7 +18,7 @@ export const Stats = () => {
   const { data } = useSWR(`https://pokeapi.co/api/v2/pokemon/${id}`)
   return (
     <Layout>
-      {data?.stats?.map(stat => <div className="line">
+      {data?.stats?.map((stat, index) => <div className="line" key={index}>
         <span>{stat.stat.name}</span>
         <span>{stat.base_stat}</span>
         <progress max="252" value={stat.base_stat}></progress>
