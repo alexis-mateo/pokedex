@@ -12,13 +12,13 @@ import { Views } from './pages/DetailsViews'
 
 const Layout = styled.div`
   background-color: ${({ bgColor }) => bgColor};
-  padding: 50px 50px 0 50px;
   height: 100%;
 
   & .content {
     display: grid;
     width: 750px;
     margin: auto;
+    padding: 50px 50px 25px 50px;
   }
 
   & .header {
@@ -60,7 +60,6 @@ const Layout = styled.div`
   & .card {
     background-color: white;
     border-radius: 16px;
-    height: 800px;
     padding: 32px 32px;
   }
 `
