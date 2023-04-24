@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import useSWR from 'swr'
-import styled from 'styled-components'
+import styled, { keyframes } from 'styled-components'
 import { useParams } from "react-router-dom"
 import { Tab, Tabs } from '@mui/material'
 import { Sparkles as Normal } from '@styled-icons/ionicons-outline/Sparkles'
@@ -9,6 +9,16 @@ import { Sparkles as Shiny} from '@styled-icons/ionicons-sharp/Sparkles'
 import { usePokemonTypes } from './utils/usePokemonTypes'
 import { Type } from './components/Type'
 import { Views } from './pages/DetailsViews'
+import pokeballImg from './assets/pokeball.png'
+
+const rotate = keyframes`
+  from {
+    transform: translate(50%, -20%) rotate(0deg) ;
+  }
+  to {
+    transform: translate(50%, -20%) rotate(360deg) ;
+  }
+`
 
 const Layout = styled.div`
   background-color: ${({ bgColor }) => bgColor};
@@ -42,6 +52,16 @@ const Layout = styled.div`
       height: 200px;
       bottom: -35px;
       right: 37%;
+      z-index: 2;
+    }
+    & .pokeball {
+      position: absolute;
+      height: 160px;
+      filter: brightness(90%);
+      opacity: 0.5;
+      top: 50%;
+      right: 50%;
+      animation: ${rotate} 3s linear infinite;
     }
     & .title {
       display: flex;
@@ -61,6 +81,7 @@ const Layout = styled.div`
     background-color: white;
     border-radius: 16px;
     padding: 32px 32px;
+    z-index: 1;
   }
 `
 
@@ -83,6 +104,7 @@ export const Details = () => {
             {informations?.types?.map((type, index) => <Type key={index}>{type?.type?.name}</Type>)}
           </div>
           <img src={informations?.sprites.other['official-artwork'][isShiny ? 'front_shiny' : 'front_default']} className="image" />
+          <img src={pokeballImg} className="pokeball" />
           <span className="shiny" onClick={() => setIsShiny(!isShiny)}>
             {!isShiny ? <Normal title="Normal" /> : <Shiny title="Shiny" />}
           </span>

@@ -4,6 +4,9 @@ import { ArrowRight } from '@styled-icons/bootstrap/ArrowRight'
 
 import { useEvolutionChain } from "../../hook/useEvolutionChain"
 import { ChainImage } from "../../components/ChainImage"
+import { useMega } from "../../hook/useMega"
+import { PokemonImage } from "../../components/PokemonImage"
+import PokeGif from '../../assets/pokeball-wait.gif'
 
 const Layout = styled.div`
   display: grid;
@@ -31,6 +34,20 @@ const Layout = styled.div`
       }
     }
   }
+
+  & .megas {
+    display: flex;
+    justify-content: space-evenly;
+  }
+
+  & .empty {
+    display: grid;
+    gap: 8px;
+    justify-items: center;
+    & .image {
+      width: 40%;
+    }
+  }
 `
 
 const createImgChain = chain => {
@@ -50,20 +67,36 @@ const createImgChain = chain => {
 export const Evolution = () => {
   const { id } = useParams()
   const chains = useEvolutionChain(id)
+  const { hasMegaForm, getMegaForms, isMega } = useMega(id)
+
   return (
     <Layout>
-      <span className="title">Evolution chain :</span>
-      <div className="evolution">
-        {
-          chains?.filter(chain => 
-            chain.map(pokemon => pokemon.id).includes(+id)
-          )?.map((chain, index) => 
-            <div key={index} className="chain">
-              {createImgChain(chain)}
-            </div>
-          )
-        }
-      </div>
+      {chains[0]?.length > 1 && <>
+        <span className="title">Evolution chain :</span>
+        <div className="evolution">
+          {
+            chains?.filter(chain => 
+              chain.map(pokemon => pokemon.id).includes(+id)
+            )?.map((chain, index) => 
+              <div key={index} className="chain">
+                {createImgChain(chain)}
+              </div>
+            )
+          }
+        </div>
+      </>}
+      {(hasMegaForm() && !isMega()) && <>
+        <span className="title">Mega form :</span>
+        <div className="megas">
+          {getMegaForms().map((pokemon, index) => <PokemonImage key={index} id={pokemon} />)}
+        </div>
+      </>}
+      {((chains.length <= 1 || chains[0]?.length <= 1) && !hasMegaForm()) && 
+        <div className="empty">
+          <img src={PokeGif} className="image"/>
+          <span className="title">There is nothing here...</span>
+        </div>
+      }
     </Layout>
   )
 }
