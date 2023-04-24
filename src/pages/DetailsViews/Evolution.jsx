@@ -91,7 +91,7 @@ export const Evolution = () => {
           {getMegaForms().map((pokemon, index) => <PokemonImage key={index} id={pokemon} />)}
         </div>
       </>}
-      {((chains.length <= 1 || chains[0]?.length <= 1) && !hasMegaForm()) && 
+      {((chains.length === 0 || chains[0]?.length<= 1) && !hasMegaForm()) && 
         <div className="empty">
           <img src={PokeGif} className="image"/>
           <span className="title">There is nothing here...</span>
