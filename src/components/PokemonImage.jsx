@@ -49,7 +49,7 @@ export const PokemonImage = ({ id }) => {
     <Link to={`/details/${pokemon?.id}`} style={{ textDecoration: 'none' }}>
       <Layout>
         <img src={pokemon?.sprites.other['official-artwork'].front_default} className="image" />
-        <span className="name">{pokemon?.name}</span>
+        <span className="name">{pokemon?.name?.replaceAll('-', ' ')}</span>
         <img src={pokeballImg} className="pokeball" />
       </Layout>
     </Link>

@@ -97,7 +97,7 @@ export const Details = () => {
       <div className="content">
         <div className="header">
           <div className="title">
-            <span>{informations?.name}</span>
+            <span>{informations?.name?.replaceAll('-', ' ')}</span>
             <span>#{id}</span>
           </div>
           <div className="types">

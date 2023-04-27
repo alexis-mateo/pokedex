@@ -95,7 +95,7 @@ export const Card = ({ url, name }) => {
         <span className="id">#{data?.id}</span>
         <div className="content">
           <div className="detail">
-            <span className="name">{name}</span>
+            <span className="name">{name?.replaceAll('-', ' ')}</span>
             <div className="types">
               {data?.types?.map((type, index) => <Type key={index}>{type?.type?.name}</Type>)}
             </div>
