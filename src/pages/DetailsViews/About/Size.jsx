@@ -8,6 +8,7 @@ const Layout = styled.div`
   border-radius: 8px;
   padding-block: .6rem;
   margin: auto;
+  margin-block: 10px;
 
   & .sizeItem {
     display: grid;

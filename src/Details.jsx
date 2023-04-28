@@ -1,10 +1,11 @@
 import { useState } from 'react'
 import useSWR from 'swr'
 import styled, { keyframes } from 'styled-components'
-import { useParams } from "react-router-dom"
+import { useNavigate, useParams } from "react-router-dom"
 import { Tab, Tabs } from '@mui/material'
 import { Sparkles as Normal } from '@styled-icons/ionicons-outline/Sparkles'
 import { Sparkles as Shiny} from '@styled-icons/ionicons-sharp/Sparkles'
+import { ArrowLeftLong as ArrowLeft } from '@styled-icons/fa-solid/ArrowLeftLong'
 
 import { usePokemonTypes } from './utils/usePokemonTypes'
 import { Type } from './components/Type'
@@ -37,6 +38,13 @@ const Layout = styled.div`
     position: relative;
     height: 200px;
     grid-template-rows: repeat(2, max-content);
+
+    & .back {
+      position: absolute;
+      top: -25px;
+      color: white;
+      cursor: pointer;
+    }
 
     & .shiny {
       position: absolute;
@@ -91,11 +99,13 @@ export const Details = () => {
   const { id } = useParams()
   const { data: informations } = useSWR(`https://pokeapi.co/api/v2/pokemon/${id}`)
   const mainColor = usePokemonTypes(informations)
+  const navigate = useNavigate()
 
   return (<>
     <Layout bgColor={mainColor}>
       <div className="content">
         <div className="header">
+          <ArrowLeft className="back" size={20} onClick={() => navigate(-1)}/>
           <div className="title">
             <span>{informations?.name?.replaceAll('-', ' ')}</span>
             <span>#{id}</span>
