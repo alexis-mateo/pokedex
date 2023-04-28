@@ -5,7 +5,7 @@ import { Stats } from "./Stats"
 import { Moves } from "./Moves"
 
 const Layout = styled.div`
-  min-height: 300px;
+  /* min-height: 300px; */
   max-height: 400px;
   overflow: auto;
 `
