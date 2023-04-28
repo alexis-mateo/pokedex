@@ -61,7 +61,7 @@ export const About = () => {
         {description && <span>{description}</span>}
         <Size height={pokemonData?.height} weight={pokemonData?.weight} />
       </section>
-      <section>
+      {pokemonSpecies && <section>
         <span className="sectionTitle">More détails</span>
         <div className="infos">
           <div className="line">
@@ -79,7 +79,7 @@ export const About = () => {
             <GenderRate femaleRate={femaleRate} />
           </div>
         </div>
-      </section>
+      </section>}
       <section>
         <span className="sectionTitle">Abilities</span>
         <div className="abilities">
