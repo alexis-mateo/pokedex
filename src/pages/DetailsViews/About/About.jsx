@@ -17,7 +17,7 @@ const clearFlavorText = (text = '') => (
 
 const Layout = styled.div`
   display: grid;
-  gap: 2rem;
+  gap: 1.4rem;
   margin-top: 24px;
 
   & section {
