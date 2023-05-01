@@ -18,6 +18,7 @@ const Layout = styled.div`
   cursor: pointer;
   overflow: hidden;
   width: var(--card-width);
+  height: var(--card-height);
 
   & .id {
     justify-self: end;

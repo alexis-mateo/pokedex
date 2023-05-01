@@ -2,6 +2,7 @@
 
 :root {
   --card-width: 250px;
+  --card-height: 150px;
 }
 * {
   font-family: 'Roboto', sans-serif;

@@ -134,7 +134,7 @@ export const Details = () => {
           <img src={informations?.sprites.other['official-artwork'][isShiny ? 'front_shiny' : 'front_default']} className="image" />
           <img src={pokeballImg} className="pokeball" />
           {
-            id > 1 && <img src={pokemonSpriteUrl(+id - 1)}
+            (id > 1 && id <= 1010)&& <img src={pokemonSpriteUrl(+id - 1)}
               className="prevPokemon navPokemon"
               onClick={() => navigate(`/details/${+id - 1}`)}
             />
