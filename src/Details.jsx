@@ -83,6 +83,23 @@ const Layout = styled.div`
       display: flex;
       gap: 12px;
     }
+
+    & .navPokemon {
+      position: absolute;
+      height: 150px;
+      filter: brightness(0);
+      opacity: 0.6;
+      top: 25%;
+      cursor: pointer;
+    }
+
+    & .prevPokemon {
+      left: 10%;
+    }
+
+    & .nextPokemon {
+      right: 10%;
+    }
   }
 
   & .card {
@@ -100,6 +117,7 @@ export const Details = () => {
   const { data: informations } = useSWR(`https://pokeapi.co/api/v2/pokemon/${id}`)
   const mainColor = usePokemonTypes(informations)
   const navigate = useNavigate()
+  const pokemonSpriteUrl = id => `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${id}.png`
 
   return (<>
     <Layout bgColor={mainColor}>
@@ -115,6 +133,18 @@ export const Details = () => {
           </div>
           <img src={informations?.sprites.other['official-artwork'][isShiny ? 'front_shiny' : 'front_default']} className="image" />
           <img src={pokeballImg} className="pokeball" />
+          {
+            id > 1 && <img src={pokemonSpriteUrl(+id - 1)}
+              className="prevPokemon navPokemon"
+              onClick={() => navigate(`/details/${+id - 1}`)}
+           />
+          }
+          {
+            id < 1010 && <img src={pokemonSpriteUrl(+id + 1)} 
+              className="nextPokemon navPokemon"
+              onClick={() => navigate(`/details/${+id + 1}`)}
+            />
+          }
           <span className="shiny" onClick={() => setIsShiny(!isShiny)}>
             {!isShiny ? <Normal title="Normal" /> : <Shiny title="Shiny" />}
           </span>
