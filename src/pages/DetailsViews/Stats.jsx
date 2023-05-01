@@ -1,8 +1,8 @@
 import useSWR from 'swr'
 import styled from 'styled-components'
-import { useParams } from "react-router-dom"
+import { useParams } from 'react-router-dom'
 import { getStatInfo } from '../../utils/getStatInfo'
-import { getMultipliers } from '../../utils/getMultiplier'
+// import { getMultipliers } from '../../utils/getMultiplier'
 
 const Layout = styled.div`
   display: grid;
@@ -37,7 +37,7 @@ const Progress = styled.progress`
 export const Stats = () => {
   const { id } = useParams()
   const { data } = useSWR(`https://pokeapi.co/api/v2/pokemon/${id}`)
-  const multipliers = getMultipliers(data?.types?.map(type => type.type.name))
+  // const multipliers = getMultipliers(data?.types?.map(type => type.type.name))
   return (
     <Layout>
       {data?.stats?.map((stat, index) => <div className="line" key={index}>

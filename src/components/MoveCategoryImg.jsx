@@ -1,5 +1,5 @@
-import { Tooltip } from "@mui/material"
-import { useMoveCategory } from "../hook/useMoveCategory"
+import { Tooltip } from '@mui/material'
+import { useMoveCategory } from '../hook/useMoveCategory'
 
 export const MoveCategoryImg = ({ category }) => {
   const img = useMoveCategory(category)

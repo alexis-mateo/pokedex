@@ -1,16 +1,16 @@
 import { useState } from 'react'
 import useSWR from 'swr'
 import styled, { keyframes } from 'styled-components'
-import { useNavigate, useParams } from "react-router-dom"
+import { useNavigate, useParams } from 'react-router-dom'
 import { Tab, Tabs } from '@mui/material'
 import { Sparkles as Normal } from '@styled-icons/ionicons-outline/Sparkles'
 import { Sparkles as Shiny} from '@styled-icons/ionicons-sharp/Sparkles'
 import { ArrowLeftLong as ArrowLeft } from '@styled-icons/fa-solid/ArrowLeftLong'
 
-import { usePokemonTypes } from './utils/usePokemonTypes'
-import { Type } from './components/Type'
-import { Views } from './pages/DetailsViews'
-import pokeballImg from './assets/pokeball.png'
+import { usePokemonTypes } from '../utils/usePokemonTypes'
+import { Type } from '../components/Type'
+import { Views } from './DetailsViews'
+import pokeballImg from '../assets/pokeball.png'
 
 const rotate = keyframes`
   from {
@@ -119,7 +119,7 @@ export const Details = () => {
   const navigate = useNavigate()
   const pokemonSpriteUrl = id => `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${id}.png`
 
-  return (<>
+  return (
     <Layout bgColor={mainColor}>
       <div className="content">
         <div className="header">
@@ -137,7 +137,7 @@ export const Details = () => {
             id > 1 && <img src={pokemonSpriteUrl(+id - 1)}
               className="prevPokemon navPokemon"
               onClick={() => navigate(`/details/${+id - 1}`)}
-           />
+            />
           }
           {
             id < 1010 && <img src={pokemonSpriteUrl(+id + 1)} 
@@ -165,5 +165,5 @@ export const Details = () => {
         </div>
       </div>
     </Layout>
-  </>)
+  )
 }

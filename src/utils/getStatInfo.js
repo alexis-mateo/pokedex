@@ -9,15 +9,15 @@ const getStatColor = value => {
 }
 
 const fullName = {
-  hp: 'HP',
-  attack: 'Attack',
-  defense: 'Defense',
-  'special-attack': 'Special Attack',
+  hp:                'HP',
+  attack:            'Attack',
+  defense:           'Defense',
+  'special-attack':  'Special Attack',
   'special-defense': 'Special Defense',
-  speed: 'Speed'
+  speed:             'Speed',
 }
 
 export const getStatInfo = (name, value) => ({
-  color: getStatColor(value),
+  color:    getStatColor(value),
   fullName: fullName[name],
 })

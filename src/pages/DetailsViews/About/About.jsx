@@ -1,18 +1,18 @@
-import { useParams } from "react-router-dom"
+import { useParams } from 'react-router-dom'
 import useSWR from 'swr'
 import styled from 'styled-components'
 
-import { Size } from "./Size"
-import { GenderRate } from "./GenderRate"
-import { Ability } from "./Ability"
+import { Size } from './Size'
+import { GenderRate } from './GenderRate'
+import { Ability } from './Ability'
 
 const clearFlavorText = (text = '') => (
   text.replaceAll('\f', '\n')
-      .replaceAll('\u00ad\n', '')
-      .replaceAll('\u00ad', '')
-      .replaceAll(' -\n', ' - ')
-      .replaceAll('-\n', '-')
-      .replaceAll('\n', ' ')
+    .replaceAll('\u00ad\n', '')
+    .replaceAll('\u00ad', '')
+    .replaceAll(' -\n', ' - ')
+    .replaceAll('-\n', '-')
+    .replaceAll('\n', ' ')
 )
 
 const Layout = styled.div`

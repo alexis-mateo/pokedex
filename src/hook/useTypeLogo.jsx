@@ -18,7 +18,7 @@ import steel from '../assets/pokemonTypes/steel.svg'
 import water from '../assets/pokemonTypes/water.svg'
 
 const types = {
-  bug, dark, dragon, electric, fairy, fighting, fire, flying, ghost, grass, ground, ice, normal, poison, psychic, rock, steel, water
+  bug, dark, dragon, electric, fairy, fighting, fire, flying, ghost, grass, ground, ice, normal, poison, psychic, rock, steel, water,
 }
 
-export const useTypeLogo = (type) => types[type]
+export const useTypeLogo = type => types[type]

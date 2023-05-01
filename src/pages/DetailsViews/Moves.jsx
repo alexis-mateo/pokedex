@@ -1,9 +1,9 @@
-import { useParams } from "react-router"
-import { DataGrid } from '@mui/x-data-grid';
+import { useParams } from 'react-router'
+import { DataGrid } from '@mui/x-data-grid'
 
-import { useRowsMoves } from "../../hook/useRowsMoves";
-import { TypeIconLabel } from "../../components/TypeIconLabel";
-import { MoveCategoryImg } from "../../components/MoveCategoryImg";
+import { useRowsMoves } from '../../hook/useRowsMoves'
+import { TypeIconLabel } from '../../components/TypeIconLabel'
+import { MoveCategoryImg } from '../../components/MoveCategoryImg'
 
 const columns = [
   { field: 'name', headerName: 'Name', width: 150 },

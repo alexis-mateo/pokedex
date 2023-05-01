@@ -1,11 +1,11 @@
-import { useParams } from "react-router"
-import styled from "styled-components"
+import { useParams } from 'react-router'
+import styled from 'styled-components'
 import { ArrowRight } from '@styled-icons/bootstrap/ArrowRight'
 
-import { useEvolutionChain } from "../../hook/useEvolutionChain"
-import { ChainImage } from "../../components/ChainImage"
-import { useMega } from "../../hook/useMega"
-import { PokemonImage } from "../../components/PokemonImage"
+import { useEvolutionChain } from '../../hook/useEvolutionChain'
+import { ChainImage } from '../../components/ChainImage'
+import { useMega } from '../../hook/useMega'
+import { PokemonImage } from '../../components/PokemonImage'
 import PokeGif from '../../assets/pokeball-wait.gif'
 
 const Layout = styled.div`
