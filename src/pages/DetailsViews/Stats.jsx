@@ -1,20 +1,68 @@
+import { Fragment } from 'react'
 import useSWR from 'swr'
 import styled from 'styled-components'
 import { useParams } from 'react-router-dom'
 import { getStatInfo } from '../../utils/getStatInfo'
-// import { getMultipliers } from '../../utils/getMultiplier'
+import { getMultipliers } from '../../utils/getMultiplier'
+import { TypeIconLabel } from '../../components/TypeIconLabel'
+
+const multiplierColors = {
+  0:   '#aaa',
+  0.5: '#afa',
+  1:   '#eec',
+  2:   '#f92',
+}
 
 const Layout = styled.div`
-  display: grid;
-  padding-block: 16px;
-  margin: 32px auto 0 auto;
-  width: max-content;
-  gap: 6px;
+  .title {
+    font-weight: bold;
+    margin-top: 12px;
+  }
 
-  & .line {
+  .stats { 
     display: grid;
-    grid-template-columns: 20ch 3ch auto;
-    gap: 8px;
+    margin: auto;
+    width: max-content;
+    gap: 6px;
+
+    & .line {
+      display: grid;
+      grid-template-columns: 20ch 3ch auto;
+      gap: 8px;
+    }
+  }
+
+  & .section {
+    margin-top: 14px;
+    & .weakness {
+      display: grid;
+      grid-auto-flow: column;
+      grid-template-rows: repeat(2, max-content);
+      grid-auto-columns: max-content;
+      justify-content: center;
+      overflow-x: auto;
+      max-width: 650px;
+      height: 150px;
+      margin: 14px auto;
+      gap: 3px 12px;
+
+      & .type {
+        transform: rotate(-180deg);
+        & img {
+          transform: rotate(90deg);
+        }
+        writing-mode: vertical-rl;
+        padding: 8px 4px
+      }
+      
+      & .multiplier {
+        text-align: center;
+        font-weight: 700;
+        padding: 3px;
+        border-radius: .25em;
+        color: #333;
+      }
+    }
   }
 `
 
@@ -37,14 +85,35 @@ const Progress = styled.progress`
 export const Stats = () => {
   const { id } = useParams()
   const { data } = useSWR(`https://pokeapi.co/api/v2/pokemon/${id}`)
-  // const multipliers = getMultipliers(data?.types?.map(type => type.type.name))
+  const multipliers = getMultipliers(data?.types?.map(type => type.type.name))
+  console.log(multipliers)
+
   return (
     <Layout>
-      {data?.stats?.map((stat, index) => <div className="line" key={index}>
-        <span>{getStatInfo(stat.stat.name)?.fullName}</span>
-        <span>{stat.base_stat}</span>
-        <Progress max="252" value={stat.base_stat} color={getStatInfo(stat.stat.name, stat.base_stat)?.color}></Progress>
-      </div>)}
+      <span className="title">Stats</span>
+      <div className="stats">
+        {data?.stats?.map((stat, index) => <div className="line" key={index}>
+          <span>{getStatInfo(stat.stat.name)?.fullName}</span>
+          <span>{stat.base_stat}</span>
+          <Progress max="252" value={stat.base_stat} color={getStatInfo(stat.stat.name, stat.base_stat)?.color}></Progress>
+        </div>)}
+      </div>
+      <div className="section">
+        <span className="title">Weakness & resistance</span>
+        <div className="weakness">
+          {Object.keys(multipliers.defense).map((type, index) => 
+            <Fragment key={index}>
+              <TypeIconLabel type={type} className="type"/>
+              <span 
+                className="multiplier" 
+                style={{ backgroundColor: multiplierColors[multipliers.defense[type]] }}
+              >
+                {multipliers.defense[type]}
+              </span>
+            </Fragment>
+          )}
+        </div>
+      </div>
     </Layout>
   )
 }

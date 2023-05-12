@@ -18,11 +18,11 @@ const Layout = styled.div`
   }
 `
 
-export const TypeIconLabel = ({ type }) => {
+export const TypeIconLabel = ({ type, className }) => {
   const color = pokemonTypes.filter(typeObject => typeObject?.name === type)[0]?.color ?? 'grey'
   const logoPath = useTypeLogo(type)
   return (
-    <Layout bgColor={color}>
+    <Layout bgColor={color} className={className}>
       <img 
         src={logoPath}
       />

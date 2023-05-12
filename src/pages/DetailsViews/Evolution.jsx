@@ -76,7 +76,7 @@ export const Evolution = () => {
         <div className="evolution">
           {
             chains?.filter(chain => 
-              chain.map(pokemon => pokemon.id).includes(+id)
+              chain.map(pokemon => pokemon.id)
             )?.map((chain, index) => 
               <div key={index} className="chain">
                 {createImgChain(chain)}

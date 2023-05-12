@@ -20,6 +20,10 @@ const router = createBrowserRouter([
     path:    '/details/:id',
     element: <Details />,
   },
+  {
+    path:    '*',
+    element: <span>404</span>,
+  },
 ])
 
 ReactDOM.createRoot(document.getElementById('root')).render(
