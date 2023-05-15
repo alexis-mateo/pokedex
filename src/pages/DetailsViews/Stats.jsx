@@ -52,7 +52,8 @@ const Layout = styled.div`
           transform: rotate(90deg);
         }
         writing-mode: vertical-rl;
-        padding: 8px 4px
+        padding: 8px 4px;
+        justify-self: center;
       }
       
       & .multiplier {
