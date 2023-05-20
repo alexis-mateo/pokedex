@@ -12,7 +12,7 @@ const Layout = styled.div`
   align-content: center;
   align-items: center;
   height: 100vh;
-  background-color: #edd553;
+  background-color: rgbA(237, 213, 83, 0.85);
 
   & span {
     color: #3B60DA;
