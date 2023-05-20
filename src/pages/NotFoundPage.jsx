@@ -1,6 +1,8 @@
 import styled from 'styled-components'
 import { useNavigate } from 'react-router-dom'
 
+import { ArrowLeftShort } from '@styled-icons/bootstrap/ArrowLeftShort'
+
 import Pikachu from '../assets/pikachu.png'
 
 const Layout = styled.div`
@@ -27,12 +29,14 @@ const Layout = styled.div`
     letter-spacing: .5rem;
   }
 
-  & button {
+  & .button {
+    display: flex;
+    align-items: center;
     background-color: #3B60DA;
     color: #fff;
     border: none;
     border-radius: 2rem;
-    padding: 10px 20px;
+    padding: 5px 10px;
     margin-top: 20px;
     cursor: pointer;
     transition: all .15s ease-in-out;
@@ -54,7 +58,10 @@ export const NotFoundPage = () => {
       <img src={Pikachu} alt="Pikachu" />
       <span className="title">Page not found</span>
       <span>Sorry! The page you're looking for is not here.</span>
-      <button onClick={() => navigate('/')}>Back home</button>
+      <div className="button" onClick={() => navigate(-1)}>
+        <ArrowLeftShort size="25px"/>
+        Go back
+      </div>
     </Layout>
   )
 }

@@ -87,7 +87,6 @@ export const Stats = () => {
   const { id } = useParams()
   const { data } = useSWR(`https://pokeapi.co/api/v2/pokemon/${id}`)
   const multipliers = getMultipliers(data?.types?.map(type => type.type.name))
-  console.log(multipliers)
 
   return (
     <Layout>
