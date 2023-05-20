@@ -10,6 +10,7 @@ import { SWRConfig } from 'swr'
 import { fetcher } from './utils/fetcher'
 import './css/main.css'
 import { Details } from './pages/Details'
+import { NotFoundPage } from './pages/NotFoundPage'
 
 const router = createBrowserRouter([
   {
@@ -22,7 +23,7 @@ const router = createBrowserRouter([
   },
   {
     path:    '*',
-    element: <span>404</span>,
+    element: <NotFoundPage />,
   },
 ])
 
