@@ -123,7 +123,7 @@ export const Details = () => {
     <Layout bgColor={mainColor}>
       <div className="content">
         <div className="header">
-          <ArrowLeft className="back" size={20} onClick={() => navigate(-1)}/>
+          <ArrowLeft className="back" size={20} onClick={() => navigate('/')}/>
           <div className="title">
             <span>{informations?.name?.replaceAll('-', ' ')}</span>
             <span>#{id}</span>
