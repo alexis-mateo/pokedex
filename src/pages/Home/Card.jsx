@@ -26,7 +26,7 @@ const Layout = styled.div`
     padding-right: 20px;
     color: #2c2c2c;
     opacity: 0.3;
-    transition: ease-in 0.1s all;
+    transition: ease-in 0.15s all;
   }
 
   & .name {

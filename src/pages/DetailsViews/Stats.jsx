@@ -11,6 +11,7 @@ const multiplierColors = {
   0.5: '#afa',
   1:   '#eec',
   2:   '#f92',
+  4:   '#e66',
 }
 
 const Layout = styled.div`
