@@ -6,6 +6,7 @@ import pokeballImg from '../../assets/pokeball.png'
 import { CardSkeleton } from '../../components/CardSkeleton'
 import { Type } from '../../components/Type'
 import { usePokemonTypes } from '../../utils/usePokemonTypes'
+import { useFilter } from '../../hook/filterContext'
 
 const Layout = styled.div`
   display: grid;
@@ -89,22 +90,27 @@ export const Card = ({ url, name }) => {
   const navigate = useNavigate()
   const { data } = useSWR(url)
   const mainColor = usePokemonTypes(data)
+  const { type } = useFilter()
+  const isVisible = type == null || 
+                    data?.types?.map(({ type }) => type.name)?.some(el => el === type)
 
   return (<>
-    {data != null ?
-      <Layout bgColor={mainColor} onClick={() => navigate(`/details/${data?.id}`)}>
-        <span className="id">#{data?.id}</span>
-        <div className="content">
-          <div className="detail">
-            <span className="name">{name?.replaceAll('-', ' ')}</span>
-            <div className="types">
-              {data?.types?.map((type, index) => <Type key={index}>{type?.type?.name}</Type>)}
+    {data != null ? <>
+      {isVisible && 
+        <Layout bgColor={mainColor} onClick={() => navigate(`/details/${data?.id}`)}>
+          <span className="id">#{data?.id}</span>
+          <div className="content">
+            <div className="detail">
+              <span className="name">{name?.replaceAll('-', ' ')}</span>
+              <div className="types">
+                {data?.types?.map((type, index) => <Type key={index}>{type?.type?.name}</Type>)}
+              </div>
             </div>
+            <img src={data?.sprites.other['official-artwork'].front_default} className="image" />
           </div>
-          <img src={data?.sprites.other['official-artwork'].front_default} className="image" />
-        </div>
-        <img src={pokeballImg} className="pokeball" />
-      </Layout> : <CardSkeleton />
+          <img src={pokeballImg} className="pokeball" />
+        </Layout>
+      }</> : <CardSkeleton />
     }
   </>)
 }

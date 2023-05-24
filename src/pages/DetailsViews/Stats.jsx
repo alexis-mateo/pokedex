@@ -7,11 +7,12 @@ import { getMultipliers } from '../../utils/getMultiplier'
 import { TypeIconLabel } from '../../components/TypeIconLabel'
 
 const multiplierColors = {
-  0:   '#aaa',
-  0.5: '#afa',
-  1:   '#eec',
-  2:   '#f92',
-  4:   '#e66',
+  0:    '#aaa',
+  0.25: '#3d3',
+  0.5:  '#afa',
+  1:    '#eec',
+  2:    '#f92',
+  4:    '#e66',
 }
 
 const Layout = styled.div`

@@ -8,6 +8,7 @@ import { Pagination } from './Pagination'
 import { useSearchParams } from 'react-router-dom'
 import { Searchbar } from './Searchbar'
 import { useNavigateToPokemon } from '../../hook/useNavigateToPokemon'
+import { FilterProvider } from '../../hook/filterContext'
 
 const MAX_POKEMON_ID = 1010
 
@@ -35,22 +36,24 @@ export const App = () => {
   useNavigateToPokemon(searchTerm)
 
   return (
-    <Layout>
-      <Searchbar onClick={value => setSearchterm(value)}/>
-      <div className="content">
-        {data ? data?.results.map((pokemon, index) => (
-          getIdFromUrl(pokemon.url) <= MAX_POKEMON_ID && 
+    <FilterProvider>
+      <Layout>
+        <Searchbar onClick={value => setSearchterm(value)}/>
+        <div className="content">
+          {data ? data?.results.map((pokemon, index) => (
+            getIdFromUrl(pokemon.url) <= MAX_POKEMON_ID && 
           <Card name={pokemon.name} url={pokemon.url} key={index}/>
-        )) : <Loader count={pageSize} />}
-      </div>
-      <Pagination 
-        MAX_POKEMON_ID={MAX_POKEMON_ID}
-        disabled={!data}
-        page={page} 
-        setPage={setPage} 
-        pageSize={pageSize} 
-        setPageSize={setPageSize}
-      />
-    </Layout>
+          )) : <Loader count={pageSize} />}
+        </div>
+        <Pagination 
+          MAX_POKEMON_ID={MAX_POKEMON_ID}
+          disabled={!data}
+          page={page} 
+          setPage={setPage} 
+          pageSize={pageSize} 
+          setPageSize={setPageSize}
+        />
+      </Layout>
+    </FilterProvider>
   )
 }
