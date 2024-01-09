@@ -119,11 +119,16 @@ export const Details = () => {
   const navigate = useNavigate()
   const pokemonSpriteUrl = id => `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${id}.png`
 
+  const handkeClick = () => {
+    if(!document.startViewTransition) navigate('/')
+    else document.startViewTransition(() => navigate('/'))
+  }
+
   return (
-    <Layout bgColor={mainColor}>
+    <Layout bgColor={mainColor} style={{ 'viewTransitionName': `card-${id}` }}>
       <div className="content">
         <div className="header">
-          <ArrowLeft className="back" size={20} onClick={() => navigate('/')}/>
+          <ArrowLeft className="back" size={20} onClick={handkeClick}/>
           <div className="title">
             <span>{informations?.name?.replaceAll('-', ' ')}</span>
             <span>#{id}</span>
@@ -131,18 +136,20 @@ export const Details = () => {
           <div className="types">
             {informations?.types?.map((type, index) => <Type key={index}>{type?.type?.name}</Type>)}
           </div>
-          <img src={informations?.sprites.other['official-artwork'][isShiny ? 'front_shiny' : 'front_default']} className="image" />
+          <img src={informations?.sprites.other['official-artwork'][isShiny ? 'front_shiny' : 'front_default']} className="image" style={{ viewTransitionName: `pokemon-${id}` }} />
           <img src={pokeballImg} className="pokeball" />
           {
             (id > 1 && id <= 1010)&& <img src={pokemonSpriteUrl(+id - 1)}
               className="prevPokemon navPokemon"
               onClick={() => navigate(`/details/${+id - 1}`)}
+              style={{ viewTransitionName: `pokemon-${+id - 1}` }}
             />
           }
           {
             id < 1010 && <img src={pokemonSpriteUrl(+id + 1)} 
               className="nextPokemon navPokemon"
               onClick={() => navigate(`/details/${+id + 1}`)}
+              style={{ viewTransitionName: `pokemon-${+id + 1}` }}
             />
           }
           <span className="shiny" onClick={() => setIsShiny(!isShiny)}>

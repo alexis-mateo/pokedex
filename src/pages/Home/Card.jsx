@@ -94,10 +94,15 @@ export const Card = ({ url, name }) => {
   const isVisible = type == null || 
                     data?.types?.map(({ type }) => type.name)?.some(el => el === type)
 
+  const handkeClick = () => {
+    if(!document.startViewTransition) navigate(`/details/${data?.id}`)
+    else document.startViewTransition(() => navigate(`/details/${data?.id}`))
+  }
+
   return (<>
     {data != null ? <>
       {isVisible && 
-        <Layout bgColor={mainColor} onClick={() => navigate(`/details/${data?.id}`)}>
+        <Layout bgColor={mainColor} onClick={handkeClick} style={{ viewTransitionName: `card-${data?.id}` }}>
           <span className="id">#{data?.id}</span>
           <div className="content">
             <div className="detail">
@@ -106,7 +111,7 @@ export const Card = ({ url, name }) => {
                 {data?.types?.map((type, index) => <Type key={index}>{type?.type?.name}</Type>)}
               </div>
             </div>
-            <img src={data?.sprites.other['official-artwork'].front_default} className="image" />
+            <img src={data?.sprites.other['official-artwork'].front_default} className="image" style={{ viewTransitionName: `pokemon-${data?.id}` }}/>
           </div>
           <img src={pokeballImg} className="pokeball" />
         </Layout>
